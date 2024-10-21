@@ -11,7 +11,7 @@ const args = process.argv,
 if (args[2] && args[2] === "dev") {
   console.log("Dev flag detected running npm install");
 } else {
-  PRODUCTION_FLAG = "--no-audit --production";
+  PRODUCTION_FLAG = "--prod";
 }
 
 getSubfolders = (folder) => {
@@ -48,14 +48,14 @@ async.series(
 
         var commandOut;
 
-        console.log(codegen.name + ": yarn install " + PRODUCTION_FLAG);
-        commandOut = shell.exec("yarn install " + PRODUCTION_FLAG, {
+        console.log(codegen.name + ": pnpm install " + PRODUCTION_FLAG);
+        commandOut = shell.exec("pnpm install " + PRODUCTION_FLAG, {
           silent: true,
         });
 
         if (commandOut.code !== 0) {
           console.error(
-            "Failed to run yarn install on codegen " +
+            "Failed to run pnpm install on codegen " +
               codegen.name +
               ", here is the error:"
           );
